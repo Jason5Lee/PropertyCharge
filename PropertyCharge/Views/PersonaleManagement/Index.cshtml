@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Jason5Lee.PropertyCharge.Models.Personale>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>个人管理</h1>
+
+<p>
+    <a asp-action="Create">创建</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                身份证号
+            </th>
+            <th>
+                姓名
+            </th>
+            <th>
+                住址
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="alert-danger">删除</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

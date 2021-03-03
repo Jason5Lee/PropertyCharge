@@ -1,0 +1,48 @@
+﻿@model Jason5Lee.PropertyCharge.Models.Charge
+
+@{
+    ViewData["Title"] = "编辑收费项";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditCharge">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="PersonaleId" class="control-label"></label>
+                <input asp-for="PersonaleId" class="form-control" value="@Model.PersonaleId" readonly />
+                <span asp-validation-for="PersonaleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">收费名</label>
+                <input asp-for="Name" class="form-control" required/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <input asp-for="Paid" value=false hidden />
+            <div class="form-group">
+                <label asp-for="Fee" class="control-label">费用</label>
+                <input asp-for="Fee" class="form-control" required/>
+                <span asp-validation-for="Fee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        </form>
+        @{
+            var failedMessage = ViewData["FailedMessage"];
+            if (failedMessage != null)
+            {
+                <div class="alert alert-danger">
+                    @failedMessage
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Query">返回</a>
+</div>
+

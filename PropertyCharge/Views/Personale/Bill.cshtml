@@ -1,0 +1,38 @@
+﻿@model Jason5Lee.PropertyCharge.Models.Bill
+
+@{
+    ViewData["Title"] = "账单";
+}
+
+<h1>@Model.PersonaleId 的账单如下</h1>
+
+<div>
+    <label>总费用: @Model.BillFee</label>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                收费名
+            </th>
+            <th>
+                费用
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Charges)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fee)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,50 @@
+﻿@model Jason5Lee.PropertyCharge.Models.Bill
+
+@{
+    ViewData["Title"] = "账单查询";
+}
+
+<h1>@Model.PersonaleId 的账单如下</h1>
+
+<div>
+    <label>总费用: @Model.BillFee</label>
+</div>
+<div>
+    <a asp-action="CreateCharge" asp-route-personaleIdString="@Model.PersonaleId">创建收费项</a><br />
+    @if (Model.Charges.Count > 0)
+    {
+        <a asp-action="PayConfirm" asp-route-personaleId="@Model.PersonaleId" asp-route-billFee="@Model.BillFee" asp-route-chargeids="@String.Join(",", Model.Charges.Select(ch => ch.Id))">确认支付</a>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                收费名
+            </th>
+            <th>
+                费用
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Charges)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fee)
+                </td>
+                <td>
+                    <a asp-action="EditCharge" asp-route-id="@item.Id">编辑</a> |
+                    <a asp-action="DeleteCharge" asp-route-id="@item.Id">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

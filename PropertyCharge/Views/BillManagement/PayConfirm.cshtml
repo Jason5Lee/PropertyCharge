@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "确认缴费";
+}
+
+<h3>确认已收到费用: @ViewData["BillFee"] ?</h3>
+<div>
+    <form asp-action="PayConfirm" method="post">
+        <input type="hidden" name="personaleId" value="@ViewData["PersonaleId"]" />
+        <input type="hidden" name="chargeIds" value="@ViewData["ChargeIds"]" />
+        <input type="submit" value="确认" class="btn btn-danger" /> |
+        <a asp-action="Query" asp-route-personaleIdString="@ViewData["PersonaleId"]">返回</a>
+    </form>
+</div>

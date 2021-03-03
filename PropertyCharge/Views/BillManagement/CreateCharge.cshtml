@@ -1,0 +1,46 @@
+﻿@model Jason5Lee.PropertyCharge.Models.Charge
+
+@{
+    ViewData["Title"] = "创建收费项";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCharge">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PersonaleId" class="control-label">收费对象身份证号</label>
+                <input asp-for="PersonaleId" class="form-control" value="@ViewData["PersonaleId"]" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">收费名</label>
+                <input asp-for="Name" class="form-control" value=@Model?.Name required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <input asp-for="Paid" value=false hidden />
+            <div class="form-group">
+                <label asp-for="Fee" class="control-label">费用</label>
+                <input asp-for="Fee" class="form-control" value=@(Model?.Fee ?? 0) required />
+                <span asp-validation-for="Fee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="创建收费项" class="btn btn-primary" />
+            </div>
+        </form>
+        @{
+            var failedMessage = ViewData["FailedMessage"];
+            if (failedMessage != null)
+            {
+                <div class="alert alert-danger">
+                    @failedMessage
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-controller="BillManagement" asp-action="Query" asp-route-personaleIdString="@ViewData["PersonaleId"]">返回</a>
+</div>
+

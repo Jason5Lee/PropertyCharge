@@ -1,0 +1,27 @@
+﻿@model Jason5Lee.PropertyCharge.Views.Account.AdminModel
+@{
+    ViewData["Title"] = "管理员登录";
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Account" asp-route-returnurl="@ViewData["ReturnUrl"]" asp-action="Login" method="post">
+            <div class="form-group">
+                <input name="role" hidden value="admin" />
+                <label name="password" class="control-label">输入管理员密码</label>
+                <div class="col-md-10">
+                    <input name="password" class="form-control" type="password" required/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">登录</button>
+            </div>
+        </form>
+        @if (Model?.LoginFailedMessage != null)
+        {
+            <div class="alert alert-danger">
+                @Model.LoginFailedMessage
+            </div>
+        }
+    </div>
+</div>
